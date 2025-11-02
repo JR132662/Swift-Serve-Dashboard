@@ -151,8 +151,8 @@ body {
 
 .theme-default,
 .theme-default-scaled {
-  --primary: var(--color-neutral-600);
-  --primary-foreground: var(--color-neutral-50);
+  --primary: var(--color-neutral-600, oklch(0.216 0.006 56.043));
+  --primary-foreground: var(--color-neutral-50, oklch(0.985 0.001 106.423));
 
   @variant dark {
     --primary: var(--color-neutral-500);
@@ -162,42 +162,42 @@ body {
 
 .theme-blue,
 .theme-blue-scaled {
-  --primary: var(--color-blue-600);
-  --primary-foreground: var(--color-blue-50);
+  --primary: oklch(0.4 0.2 240);
+  --primary-foreground: oklch(0.985 0.001 106.423);
 
   @variant dark {
-    --primary: var(--color-blue-500);
-    --primary-foreground: var(--color-blue-50);
+    --primary: oklch(0.6 0.2 240);
+    --primary-foreground: oklch(0.985 0.001 106.423);
   }
 }
 
 .theme-green,
 .theme-green-scaled {
-  --primary: var(--color-lime-600);
-  --primary-foreground: var(--color-lime-50);
+  --primary: oklch(0.4 0.2 140);
+  --primary-foreground: oklch(0.985 0.001 106.423);
 
   @variant dark {
-    --primary: var(--color-lime-600);
-    --primary-foreground: var(--color-lime-50);
+    --primary: oklch(0.6 0.2 140);
+    --primary-foreground: oklch(0.985 0.001 106.423);
   }
 }
 
 .theme-amber,
 .theme-amber-scaled {
-  --primary: var(--color-amber-600);
-  --primary-foreground: var(--color-amber-50);
+  --primary: oklch(0.4 0.2 80);
+  --primary-foreground: oklch(0.985 0.001 106.423);
 
   @variant dark {
-    --primary: var(--color-amber-500);
-    --primary-foreground: var(--color-amber-50);
+    --primary: oklch(0.6 0.2 80);
+    --primary-foreground: oklch(0.985 0.001 106.423);
   }
 }
 
 .theme-mono,
 .theme-mono-scaled {
   --font-sans: var(--font-mono);
-  --primary: var(--color-neutral-600);
-  --primary-foreground: var(--color-neutral-50);
+  --primary: var(--color-neutral-600, oklch(0.216 0.006 56.043));
+  --primary-foreground: var(--color-neutral-50, oklch(0.985 0.001 106.423));
 
   @variant dark {
     --primary: var(--color-neutral-500);

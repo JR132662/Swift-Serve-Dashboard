@@ -20,10 +20,6 @@ const DEFAULT_THEMES = [
     value: "default",
   },
   {
-    name: "Scaled",
-    value: "scaled",
-  },
-  {
     name: "Mono",
     value: "mono",
   },
@@ -41,23 +37,7 @@ const COLOR_THEMES = [
   {
     name: "Amber",
     value: "amber",
-  },
-  {
-    name: "Rose",
-    value: "rose",
-  },
-  {
-    name: "Purple",
-    value: "purple",
-  },
-  {
-    name: "Orange",
-    value: "orange",
-  },
-  {
-    name: "Teal",
-    value: "teal",
-  },
+  }
 ]
 
 export function ThemeSelector({ className }: React.ComponentProps<"div">) {
@@ -83,7 +63,7 @@ export function ThemeSelector({ className }: React.ComponentProps<"div">) {
               <SelectItem
                 key={theme.name}
                 value={theme.value}
-                className="data-[state=checked]:opacity-50"
+                className="data-[state=checked]:opacity-70"
               >
                 {theme.name}
               </SelectItem>
