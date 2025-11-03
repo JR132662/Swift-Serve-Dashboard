@@ -1,0 +1,27 @@
+// Mock data for a full day (24 hours) with realistic values
+export default [
+  { id: 1,  jetson_id: 101, cook_time: 120, assembly_time: 30, average_customer_wait: 120, average_customer_dwell_time: 180, orders_per_hour: 15, abandon_rate: 0.02, membership_type: "Bronze" },
+  { id: 2,  jetson_id: 101, cook_time: 110, assembly_time: 35, average_customer_wait: 120, average_customer_dwell_time: 175, orders_per_hour: 12, abandon_rate: 0.015, membership_type: "Silver" },
+  { id: 3,  jetson_id: 101, cook_time: 100, assembly_time: 30, average_customer_wait: 130, average_customer_dwell_time: 160, orders_per_hour: 10, abandon_rate: 0.01, membership_type: "Silver" },
+  { id: 4,  jetson_id: 101, cook_time: 115, assembly_time: 35, average_customer_wait: 150, average_customer_dwell_time: 180, orders_per_hour: 18, abandon_rate: 0.02, membership_type: "Gold" },
+  { id: 5,  jetson_id: 101, cook_time: 130, assembly_time: 40, average_customer_wait: 180, average_customer_dwell_time: 200, orders_per_hour: 25, abandon_rate: 0.03, membership_type: "Gold" },
+  { id: 6,  jetson_id: 101, cook_time: 150, assembly_time: 45, average_customer_wait: 240, average_customer_dwell_time: 225, orders_per_hour: 35, abandon_rate: 0.04, membership_type: "Gold" },
+  { id: 7,  jetson_id: 101, cook_time: 165, assembly_time: 50, average_customer_wait: 300, average_customer_dwell_time: 245, orders_per_hour: 45, abandon_rate: 0.05, membership_type: "Gold" },
+  { id: 8,  jetson_id: 101, cook_time: 180, assembly_time: 55, average_customer_wait: 420, average_customer_dwell_time: 265, orders_per_hour: 55, abandon_rate: 0.06, membership_type: "Gold" },
+  { id: 9,  jetson_id: 101, cook_time: 170, assembly_time: 50, average_customer_wait: 480, average_customer_dwell_time: 250, orders_per_hour: 60, abandon_rate: 0.07, membership_type: "Silver" },
+  { id: 10, jetson_id: 101, cook_time: 160, assembly_time: 45, average_customer_wait: 720, average_customer_dwell_time: 235, orders_per_hour: 65, abandon_rate: 0.08, membership_type: "Silver" },
+  { id: 11, jetson_id: 101, cook_time: 175, assembly_time: 50, average_customer_wait: 600, average_customer_dwell_time: 255, orders_per_hour: 70, abandon_rate: 0.09, membership_type: "Gold" },
+  { id: 12, jetson_id: 101, cook_time: 180, assembly_time: 55, average_customer_wait: 720, average_customer_dwell_time: 265, orders_per_hour: 75, abandon_rate: 0.1, membership_type: "Gold" },
+  { id: 13, jetson_id: 101, cook_time: 175, assembly_time: 50, average_customer_wait: 660, average_customer_dwell_time: 255, orders_per_hour: 70, abandon_rate: 0.09, membership_type: "Gold" },
+  { id: 14, jetson_id: 101, cook_time: 170, assembly_time: 45, average_customer_wait: 540, average_customer_dwell_time: 245, orders_per_hour: 65, abandon_rate: 0.08, membership_type: "Gold" },
+  { id: 15, jetson_id: 101, cook_time: 160, assembly_time: 45, average_customer_wait: 420, average_customer_dwell_time: 235, orders_per_hour: 55, abandon_rate: 0.07, membership_type: "Silver" },
+  { id: 16, jetson_id: 101, cook_time: 150, assembly_time: 40, average_customer_wait: 360, average_customer_dwell_time: 220, orders_per_hour: 45, abandon_rate: 0.06, membership_type: "Silver" },
+  { id: 17, jetson_id: 101, cook_time: 155, assembly_time: 45, average_customer_wait: 300, average_customer_dwell_time: 230, orders_per_hour: 50, abandon_rate: 0.06, membership_type: "Gold" },
+  { id: 18, jetson_id: 101, cook_time: 165, assembly_time: 50, average_customer_wait: 420, average_customer_dwell_time: 245, orders_per_hour: 60, abandon_rate: 0.07, membership_type: "Gold" },
+  { id: 19, jetson_id: 101, cook_time: 175, assembly_time: 50, average_customer_wait: 540, average_customer_dwell_time: 255, orders_per_hour: 65, abandon_rate: 0.08, membership_type: "Gold" },
+  { id: 20, jetson_id: 101, cook_time: 170, assembly_time: 45, average_customer_wait: 480, average_customer_dwell_time: 245, orders_per_hour: 60, abandon_rate: 0.07, membership_type: "Gold" },
+  { id: 21, jetson_id: 101, cook_time: 150, assembly_time: 40, average_customer_wait: 300, average_customer_dwell_time: 220, orders_per_hour: 45, abandon_rate: 0.05, membership_type: "Silver" },
+  { id: 22, jetson_id: 101, cook_time: 130, assembly_time: 35, average_customer_wait: 180, average_customer_dwell_time: 195, orders_per_hour: 30, abandon_rate: 0.03, membership_type: "Bronze" },
+  { id: 23, jetson_id: 101, cook_time: 120, assembly_time: 30, average_customer_wait: 150, average_customer_dwell_time: 180, orders_per_hour: 20, abandon_rate: 0.02, membership_type: "Bronze" },
+  { id: 24, jetson_id: 101, cook_time: 110, assembly_time: 30, average_customer_wait: 120, average_customer_dwell_time: 170, orders_per_hour: 15, abandon_rate: 0.015, membership_type: "Bronze" }
+]

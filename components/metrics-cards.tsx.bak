@@ -1,0 +1,232 @@
+"use client"
+import { TrendingUp } from "lucide-react"
+import { AreaChart, Area, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts"
+import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
+import mockData from "../data/mock-Data"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+
+export function MetricsCards() {
+  return (
+    <div className="*:data-[slot=card]:from-primary/6 *:data-[slot=card]:to-card *:data-[slot=card]:bg-gradient-to-t grid grid-cols-1 gap-5 px-5 lg:px-6 @md/main:grid-cols-2 @lg/main:grid-cols-4">
+      {/* Column 1 */}
+      <div className="flex flex-col gap-5">
+        <Card className="@container/card h-72">
+          <ChartContainer
+            id="queue-wait"
+            className="absolute inset-x-0 bottom-0 z-0 h-1/2 w-full aspect-auto opacity-20"
+            config={{ series: { color: "var(--primary)" } }}
+          >
+            <AreaChart data={mockData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+              <XAxis dataKey="id" hide />
+              <YAxis hide domain={[0, "dataMax"]} />
+              <Tooltip
+                content={
+                  <ChartTooltipContent
+                    className="bg-black text-white border-0 opacity-100 [&_.text-muted-foreground]:text-white [&_.text-foreground]:text-white"
+                    style={{ backgroundColor: '#000', color: '#fff' }}
+                    formatter={(value: any) => String(value)}
+                    labelFormatter={(value: any, payload: any) => {
+                      const item = Array.isArray(payload) && payload.length ? payload[0] : null
+                      const key = item?.dataKey || item?.name || "value"
+                      return String(key)
+                    }}
+                  />
+                }
+              />
+              <Area type="monotone" dataKey="average_customer_wait" stroke="var(--primary)" strokeOpacity={0.95} fill="var(--primary)" fillOpacity={0.18} strokeWidth={2.5} dot={false} />
+            </AreaChart>
+          </ChartContainer>
+          <CardHeader>
+            <CardDescription>Queue Wait Time</CardDescription>
+            <CardTitle>Queue wait time graph</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="@container/card h-74">
+          <CardHeader>
+            <CardDescription>Traffic Heatmap</CardDescription>
+            <CardTitle>Traffic heatmap</CardTitle>
+          </CardHeader>
+          <CardContent className="relative z-10 flex-1 flex items-center justify-center text-muted-foreground">
+            <div className="w-full h-40 rounded bg-muted/10 border border-dashed border-muted/30 flex items-center justify-center">
+              Traffic heatmap placeholder
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Column 2 */}
+      <div className="flex flex-col gap-5">
+        <Card className="@container/card h-47">
+          <ChartContainer
+            id="cook-time"
+            className="absolute inset-x-0 bottom-0 z-0 h-1/2 w-full aspect-auto opacity-16"
+            config={{ series: { color: "var(--primary)" } }}
+          >
+            <AreaChart data={mockData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+              <XAxis dataKey="id" hide />
+              <YAxis hide domain={[0, "dataMax"]} />
+              <Tooltip
+                content={
+                  <ChartTooltipContent
+                    className="bg-black text-white border-0 opacity-100 [&_.text-muted-foreground]:text-white [&_.text-foreground]:text-white"
+                    style={{ backgroundColor: '#000', color: '#fff' }}
+                    formatter={(value: any) => String(value)}
+                    labelFormatter={(value: any, payload: any) => {
+                      const item = Array.isArray(payload) && payload.length ? payload[0] : null
+                      const key = item?.dataKey || item?.name || "value"
+                      return String(key)
+                    }}
+                  />
+                }
+              />
+              <Area type="monotone" dataKey="cook_time" stroke="var(--primary)" strokeOpacity={0.95} fill="var(--primary)" fillOpacity={0.2} strokeWidth={2.5} dot={false} />
+            </AreaChart>
+          </ChartContainer>
+          <CardHeader>
+            <CardDescription>Cook Time Trend</CardDescription>
+            <CardTitle>Cook Time Trend</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="@container/card h-47">
+          <ChartContainer
+            id="abandon-rate"
+            className="absolute inset-x-0 bottom-0 z-0 h-1/2 w-full aspect-auto opacity-14"
+            config={{ series: { color: "var(--primary)" } }}
+          >
+            <AreaChart data={mockData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+              <XAxis dataKey="id" hide />
+              <YAxis hide domain={[0, "dataMax"]} />
+              <Tooltip
+                content={
+                  <ChartTooltipContent
+                    className="bg-black text-white border-0 opacity-100 [&_.text-muted-foreground]:text-white [&_.text-foreground]:text-white"
+                    style={{ backgroundColor: '#000', color: '#fff' }}
+                    formatter={(value: any) => String(value)}
+                    labelFormatter={(value: any, payload: any) => {
+                      const item = Array.isArray(payload) && payload.length ? payload[0] : null
+                      const key = item?.dataKey || item?.name || "value"
+                      return String(key)
+                    }}
+                  />
+                }
+              />
+              <Area type="monotone" dataKey="abandon_rate" stroke="var(--primary)" strokeOpacity={0.95} fill="var(--primary)" fillOpacity={0.16} strokeWidth={2.5} dot={false} />
+            </AreaChart>
+          </ChartContainer>
+          <CardHeader>
+            <CardDescription>Abandon Rate</CardDescription>
+            <CardTitle>Abandon Rate Over Time</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="@container/card h-47">
+          <ChartContainer
+            id="orders-pos"
+            className="absolute inset-x-0 bottom-0 z-0 h-1/2 w-full aspect-auto opacity-16"
+            config={{ series: { color: "var(--primary)" } }}
+          >
+            <AreaChart data={mockData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+              <XAxis dataKey="id" hide />
+              <YAxis hide domain={[0, "dataMax"]} />
+              <Tooltip
+                content={
+                  <ChartTooltipContent
+                    className="bg-black text-white border-0 opacity-100 [&_.text-muted-foreground]:text-white [&_.text-foreground]:text-white"
+                    style={{ backgroundColor: '#000', color: '#fff' }}
+                    formatter={(value: any) => String(value)}
+                    labelFormatter={(value: any, payload: any) => {
+                      const item = Array.isArray(payload) && payload.length ? payload[0] : null
+                      const key = item?.dataKey || item?.name || "value"
+                      return String(key)
+                    }}
+                  />
+                }
+              />
+              <Area type="monotone" dataKey="orders_per_hour" stroke="var(--primary)" strokeOpacity={0.95} fill="var(--primary)" fillOpacity={0.18} strokeWidth={2.5} dot={false} />
+            </AreaChart>
+          </ChartContainer>
+          <CardHeader>
+            <CardDescription>Order Count vs POS</CardDescription>
+            <CardTitle>Order Count vs POS Orders</CardTitle>
+          </CardHeader>
+          <CardContent className="relative z-10 flex-1 flex items-center justify-center text-muted-foreground">
+            <div className="w-full h-20 rounded bg-muted/10 border border-dashed border-muted/30 flex items-center justify-center">
+              Sandwich count vs POS orders chart placeholder
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Column 3 */}
+      <div className="flex flex-col gap-5">
+        <Card className="@container/card h-100">
+          <CardHeader>
+            <CardDescription>Media</CardDescription>
+            <CardTitle>Videos</CardTitle>
+          </CardHeader>
+          <CardContent className="relative z-10 flex flex-col gap-3">
+            <div className="w-full h-32 rounded bg-muted/10 border border-dashed border-muted/30 flex items-center justify-center">
+              Video placeholder 1
+            </div>
+            <div className="w-full h-32 rounded bg-muted/10 border border-dashed border-muted/30 flex items-center justify-center">
+              Video placeholder 2
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="@container/card h-45">
+          <ChartContainer
+            id="rush-hour"
+            className="absolute inset-x-0 bottom-0 z-0 h-1/2 w-full aspect-auto opacity-16"
+            config={{ series: { color: "var(--primary)" } }}
+          >
+            <AreaChart data={mockData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+              <XAxis dataKey="id" hide />
+              <YAxis hide domain={[0, "dataMax"]} />
+              <Tooltip
+                content={
+                  <ChartTooltipContent
+                    className="bg-black text-white border-0 opacity-100 [&_.text-muted-foreground]:text-white [&_.text-foreground]:text-white"
+                    style={{ backgroundColor: '#000', color: '#fff' }}
+                    formatter={(value: any) => String(value)}
+                    labelFormatter={(value: any, payload: any) => {
+                      const item = Array.isArray(payload) && payload.length ? payload[0] : null
+                      const key = item?.dataKey || item?.name || "value"
+                      return String(key)
+                    }}
+                  />
+                }
+              />
+              <Area type="monotone" dataKey="orders_per_hour" stroke="var(--primary)" strokeOpacity={0.95} fill="var(--primary)" fillOpacity={0.18} strokeWidth={2.5} dot={false} />
+            </AreaChart>
+          </ChartContainer>
+          <CardHeader>
+            <CardDescription>Rush Hour Forecast</CardDescription>
+            <CardTitle>Rush hour forecast</CardTitle>
+          </CardHeader>
+        </Card>
+      </div>
+
+      {/* Column 4 */}
+      <div className="flex flex-col gap-5">
+        <Card className="@container/card h-full min-h-[240px]">
+          <CardHeader>
+            <CardDescription>Suggestions & Alerts</CardDescription>
+            <CardTitle>Suggestions</CardTitle>
+          </CardHeader>
+          <CardContent className="relative z-10 flex-1 text-muted-foreground">
+            {/* Empty box for suggestions and alerts */}
+            <div className="w-full h-full rounded bg-muted/5 border border-dashed border-muted/20 flex items-center justify-center">
+              No suggestions yet
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
