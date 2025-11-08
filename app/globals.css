@@ -226,3 +226,20 @@ body {
     @apply !rounded-none !shadow-none;
   }
 }
+
+  /* Reusable container class: centers content and adds responsive horizontal padding
+     - Small screens: 1rem (px-4)
+     - Medium: 1.5rem (md:px-6)
+     - Large: 2rem (lg:px-8)
+     - Extra large: 3rem (xl:px-12)
+     Adjust `max-w-*` if you prefer a different max content width. */
+  @layer components {
+    .container {
+      @apply w-full mx-auto px-4 md:px-6 lg:px-8 xl:px-12 max-w-screen-xl;
+    }
+
+    /* optional narrow container variant */
+    .container-sm {
+      @apply w-full mx-auto px-4 md:px-6 lg:px-8 xl:px-12 max-w-4xl;
+    }
+  }
