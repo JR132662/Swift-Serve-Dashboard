@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Card,
   CardDescription,
@@ -6,6 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+import { AreaChart, Area } from "recharts"
+import { ChartContainer } from "@/components/ui/chart"
+import mockData from "../data/mock-Data"
+
 export function SectionCards() {
   return (
     <div className="*:data-[slot=card]:from-primary/6 *:data-[slot=card]:to-card dark:*:data-[slot=card]:bg-card grid grid-cols-1 gap-4 px-4 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs lg:px-6 @xl/main:grid-cols-2 @5xl/main:grid-cols-6">
@@ -13,7 +19,7 @@ export function SectionCards() {
         <CardHeader>
           <CardDescription>Queue Wait Time</CardDescription>
           <CardTitle className="text-xl font-semibold tabular-nums @[150px]/card:text-3xl">
-            3 Min 12s
+            3 m 12s
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
@@ -59,7 +65,7 @@ export function SectionCards() {
         <CardHeader>
           <CardDescription>Total Customer Wait</CardDescription>
           <CardTitle className="text-xl font-semibold tabular-nums @[150px]/card:text-3xl">
-            11m 29 s
+            11m 29s
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
@@ -71,7 +77,7 @@ export function SectionCards() {
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Avg Dwell Time</CardDescription>
+          <CardDescription>Avg Dwell After</CardDescription>
           <CardTitle className="text-xl font-semibold tabular-nums @[150px]/card:text-3xl">
             0min 41s
           </CardTitle>
@@ -83,11 +89,22 @@ export function SectionCards() {
           <div className="text-muted-foreground">Meets growth projections</div> */}
         </CardFooter>
       </Card>
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription>Orders Per Hour</CardDescription>
-          <CardTitle className="text-md font-semibold tabular-nums @[150px]/card:text-3xl">
-            4.5%
+      <Card className="@container/card relative overflow-hidden">
+        {/* Background sparkline */}
+        <ChartContainer
+          id="orders-spark"
+          className="pointer-events-none absolute inset-0 aspect-auto h-full opacity-30 [mask-image:linear-gradient(to_bottom,rgba(0,0,0,0.5),rgba(0,0,0,0.9))]"
+          config={{ series: { color: "hsl(var(--primary))" } }}
+        >
+          <AreaChart data={mockData} margin={{ top: 18, right: 8, left: 8, bottom: 18 }}>
+            <Area type="monotone" dataKey="orders_per_hour" stroke="var(--primary)" strokeWidth={2} fill="var(--primary)" fillOpacity={0.15} dot={false} />
+          </AreaChart>
+        </ChartContainer>
+
+        <CardHeader className="relative">
+          <CardDescription>Orders per Hour</CardDescription>
+          <CardTitle className="text-xl font-semibold tabular-nums @[150px]/card:text-3xl">
+            63
           </CardTitle>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
