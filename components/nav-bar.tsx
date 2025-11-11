@@ -13,8 +13,6 @@ export default function NavBar() {
         setMenuExpanded(!menuExpanded);
     }
 
-    console.log("Menu Expanded = ", menuExpanded)
-
     return (
         <>
         <nav className="flex flex-col bg-white text-black py-8 shadow-sm">
@@ -27,8 +25,7 @@ export default function NavBar() {
 
                 {/* Desktop */}
                 <ul className="hidden md:flex justify-between gap-6 text-lg">
-                    <NavLink href={"/about"}>About</NavLink>   
-                    <NavLink href={"/login"}>Login</NavLink>   
+                    <NavLink href={"/dashboard"}>Login</NavLink>   
                 </ul>
 
                 {/* Small Screens */}
@@ -45,9 +42,8 @@ export default function NavBar() {
             
         </nav>
         {menuExpanded && (
-                <ul className={`flex flex-col justify-center items-center gap-8 text-lg bg-gray-300 text-black py-8`}>
-                    <NavLink href={"/about"}>About</NavLink>   
-                    <NavLink href={"/login"}>Login</NavLink>   
+                <ul className={`flex flex-col justify-center items-center gap-8 text-lg bg-gray-300 text-black py-8`}> 
+                    <NavLink href={"/dashboard"}>Login</NavLink>   
                 </ul>
             )}
         </>

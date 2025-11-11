@@ -4,6 +4,7 @@ import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
 import mockData from "../data/mock-Data"
 import TrafficHeatmap from "@/components/traffic-heatmap"
 import useHeatmapStream from "@/hooks/use-heatmap"
+import { Timer, Flame, Lightbulb, Camera, Scan, TrendingDown, Clock, ShoppingCart } from "lucide-react"
 
 import {
   Card,
@@ -51,8 +52,10 @@ export function MetricsCards() {
       {/* 1. Queue Wait Time */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader className="pb-2 pt-4 px-6">
-          <CardDescription>Queue Wait Time</CardDescription>
-          <CardTitle>Queue wait time graph</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Timer className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Queue Wait Time</CardTitle>
+          </div>
         </CardHeader>
         <ChartContainer
           id="queue-wait"
@@ -111,8 +114,10 @@ export function MetricsCards() {
       {/* 2. Cook Time Trend */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader className="pb-2 pt-4 px-6">
-          <CardDescription>Cook Time Trend</CardDescription>
-          <CardTitle>Cook Time Trend</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Flame className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Cook Time Trend</CardTitle>
+          </div>
         </CardHeader>
         <ChartContainer
           id="cook-time"
@@ -154,8 +159,10 @@ export function MetricsCards() {
       {/* 3. Suggestions */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader className="pb-2 pt-4 px-6">
-          <CardDescription>Suggestions & Alerts</CardDescription>
-          <CardTitle>Suggestions</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Lightbulb className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Suggestions & Alerts</CardTitle>
+          </div>
         </CardHeader>
         <CardContent className="relative z-10 flex-1 text-muted-foreground">
           <div className="w-full h-full min-h-[90px] rounded bg-muted/5 border border-dashed border-muted/20 flex items-center justify-center">
@@ -167,8 +174,10 @@ export function MetricsCards() {
       {/* 4. Rush Hour Forecast */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader className="pb-2 pt-4 px-6">
-          <CardDescription>Rush Hour Forecast</CardDescription>
-          <CardTitle>Rush hour forecast</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Clock className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Rush Hour Forecast</CardTitle>
+          </div>
         </CardHeader>
         <ChartContainer
           id="rush-hour"
@@ -210,8 +219,10 @@ export function MetricsCards() {
       {/* 5. Cameras (like Pickup Zone / Front Counter) */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader>
-          <CardDescription>Cameras</CardDescription>
-          <CardTitle>Pickup & Front</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Camera className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Cameras</CardTitle>
+          </div>
         </CardHeader>
         <CardContent className="relative z-10 flex flex-col gap-3">
           <div className="w-full h-20 rounded bg-muted/10 border border-dashed border-muted/30 flex items-center justify-center">Pickup Zone</div>
@@ -224,8 +235,10 @@ export function MetricsCards() {
       {/* 5. Traffic Heatmap */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader>
-          <CardDescription>Traffic Heatmap</CardDescription>
-          <CardTitle>Traffic heatmap</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Scan className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Traffic Heatmap</CardTitle>
+          </div>
         </CardHeader>
         <CardContent className="relative z-10 flex-1">
           <div className="relative w-full h-full min-h-[90px] rounded bg-muted/5 border border-border/30 overflow-hidden">
@@ -247,8 +260,10 @@ export function MetricsCards() {
       {/* 6. Abandon Rate */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader className="pb-2 pt-4 px-6">
-          <CardDescription>Abandon Rate</CardDescription>
-          <CardTitle>Abandon Rate Over Time</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <TrendingDown className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Abandon Rate</CardTitle>
+          </div>
         </CardHeader>
         <ChartContainer
           id="abandon-rate"
@@ -290,8 +305,10 @@ export function MetricsCards() {
       {/* 7. Sandwich Count vs POS */}
   <Card className="@container/card flex flex-col overflow-hidden">
         <CardHeader>
-          <CardDescription>Sandwich Count vs POS Orders</CardDescription>
-          <CardTitle>Order Count vs POS Orders</CardTitle>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <ShoppingCart className="size-4 text-primary/80" aria-hidden="true" />
+            <CardTitle>Sandwich Count vs POS Orders</CardTitle>
+          </div>
         </CardHeader>
         <CardContent className="relative z-10 flex-1">
           <div className="space-y-4">

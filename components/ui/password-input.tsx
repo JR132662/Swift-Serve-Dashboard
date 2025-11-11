@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+// ✅ Use a type alias instead of an empty interface
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
@@ -15,9 +15,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative">
         <Input
+          ref={ref}
           type={showPassword ? "text" : "password"}
           className={cn("pr-10", className)}
-          ref={ref}
           {...props}
         />
         <Button
@@ -40,6 +40,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
     )
   }
 )
+
 PasswordInput.displayName = "PasswordInput"
 
 export { PasswordInput }
