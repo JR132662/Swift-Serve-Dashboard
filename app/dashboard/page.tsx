@@ -6,10 +6,16 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
-import data from "./data.json"
 import { MetricsCards } from "@/components/metrics-cards"
+import { createClient } from '@/utils/supabase/server'
 
-export default function Page() {
+export default async function Page() {
+  // cookies() is synchronous; no await needed
+  const supabase = createClient()
+
+  const { data: analytics } = await supabase.from('analytics_realtime').select('*')
+  console.log('[supabase todos payload]', { analytics })
+
   return (
     <SidebarProvider
       style={
