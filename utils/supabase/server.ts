@@ -5,20 +5,20 @@ import { cookies } from "next/headers";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Server Component helper: call with no arguments
-export const createClient = () => {
-  const cookieStore = cookies();
+// Server Component helper: call with no arguments.
+// Next.js may require awaiting dynamic APIs like cookies(); make this factory async.
+export const createClient = async () => {
+  const cookieStore = await cookies();
   return createServerClient(supabaseUrl!, supabaseKey!, {
     cookies: {
       getAll() {
-        // If cookies() implementation changes to async, adapt accordingly
-        return (cookieStore as any).getAll?.() || [];
+        return cookieStore.getAll();
       },
       setAll(cookiesToSet: { name: string; value: string; options: any }[]) {
         try {
-          cookiesToSet.forEach(({ name, value, options }) => (cookieStore as any).set?.(name, value, options));
+          cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
         } catch {
-          // Ignore in RSC contexts where setting isn't allowed.
+          // Ignore when setting is not allowed in the current rendering context.
         }
       },
     },
