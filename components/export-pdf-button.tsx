@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { FileDown } from 'lucide-react'
 
 export function ExportPdfButton() {
   const [loading, setLoading] = useState(false)
@@ -32,8 +33,9 @@ export function ExportPdfButton() {
 
   return (
     <div className="flex items-center gap-2">
-      <Button variant="outline" size="sm" disabled={loading} onClick={handleExport}>
-        {loading ? 'Exporting…' : 'Export PDF'}
+      <Button variant="outline" size="icon" disabled={loading} onClick={handleExport} className="sm:size-auto sm:h-8 sm:px-3">
+        {loading ? <span className="text-[10px]">…</span> : <FileDown className="size-4" />}
+        <span className="hidden sm:inline">{loading ? 'Exporting…' : 'Export PDF'}</span>
       </Button>
       {error && <span className="text-xs text-red-500">{error}</span>}
     </div>
