@@ -3,6 +3,8 @@ import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { ThemeSelector } from "./theme-selector"
+import { ExportPdfButton } from './export-pdf-button'
+import { WeatherWidget } from './weather-widget'
 
 export function SiteHeader() {
   return (
@@ -15,6 +17,8 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">SwiftServe</h1>
         <div className="ml-auto flex items-center gap-2">
+          <ExportPdfButton />
+          <WeatherWidget />
           <ThemeSelector />
           <ModeToggle />
         </div>

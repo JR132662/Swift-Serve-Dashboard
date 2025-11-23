@@ -36,7 +36,7 @@ const data = {
   navMain: [
     {
       title: "Live View",
-      url: "#",
+      url: "/live-view",
       icon: IconCamera,
     },
     {
