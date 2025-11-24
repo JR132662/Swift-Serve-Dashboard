@@ -2,6 +2,7 @@ import { AppSidebar } from '@/components/app-sidebar'
 import { SiteHeader } from '@/components/site-header'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { createClient } from '@/utils/supabase/server'
+import VideoPlayer from '@/components/video-player'
 
 export const revalidate = 0 // ensure dynamic
 
@@ -12,6 +13,10 @@ export default async function Page() {
     .from('analytics_realtime')
     .select('*')
     .order('ts', { ascending: true })
+
+  
+  const HLS_URL =
+    "https://rytjsfbyuamtmorciyka.supabase.co/storage/v1/object/public/hls-streams/jetson_1/front/index.m3u8";
 
   return (
     <SidebarProvider
@@ -25,13 +30,16 @@ export default async function Page() {
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
-        <div className="flex flex-1 flex-col">
-            <h1>Zone Analytics</h1>
-          {/* <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <AnalyticsFeed initialHistory={rows as AnalyticsRealtime[] | null} />
-            </div>
-          </div> */}
+        <div className="flex flex-1 flex-col p-8">
+            <div className="w-full aspect-video bg-black rounded-lg overflow-hidden">
+          <VideoPlayer
+            src={HLS_URL}
+            className="w-full h-full object-contain"
+            autoPlay
+            muted
+            controls
+          />
+        </div>
         </div>
       </SidebarInset>
     </SidebarProvider>

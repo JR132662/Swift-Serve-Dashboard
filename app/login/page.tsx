@@ -127,7 +127,7 @@ export default function LoginPreview() {
             </Form>
             <div className="mt-4 text-center text-md">
               Don&apos;t have an account?{' '}
-              <Link href="#" className="underline">
+              <Link href="/signup" className="underline">
                 Sign up
               </Link>
             </div>
