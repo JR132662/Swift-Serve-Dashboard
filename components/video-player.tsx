@@ -34,15 +34,47 @@ export default function VideoPlayer({
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = src;
     } else if (Hls.isSupported()) {
+      // Configure HLS with slightly larger buffer and conservative settings
+      // to reduce stuttering on unstable networks.
       hls = new Hls({
-        lowLatencyMode: true,
+        lowLatencyMode: false, // prioritize stability over ultra-low latency
         enableWorker: true,
+        // try to keep ~10s of media buffered
+        maxBufferLength: 10,
+        maxMaxBufferLength: 30,
+        maxBufferHole: 0.5,
+        // smooth auto-level switching
+        abrEwmaFastLive: 3,
+        abrEwmaSlowLive: 9,
+        liveSyncDurationCount: 3,
       });
 
       hls.loadSource(src);
       hls.attachMedia(video);
+
       hls.on(Hls.Events.ERROR, (_, data) => {
-        console.warn("HLS error:", data);
+        // On certain network/decoding errors, try to recover instead of
+        // getting stuck which can look like choppy playback.
+        if (!hls) return;
+
+        if (data.fatal) {
+          switch (data.type) {
+            case Hls.ErrorTypes.NETWORK_ERROR:
+              console.warn("HLS fatal network error, trying to recover", data);
+              hls.startLoad();
+              break;
+            case Hls.ErrorTypes.MEDIA_ERROR:
+              console.warn("HLS fatal media error, trying to recover", data);
+              hls.recoverMediaError();
+              break;
+            default:
+              console.error("HLS unrecoverable error, destroying instance", data);
+              hls.destroy();
+              break;
+          }
+        } else {
+          console.warn("HLS error:", data);
+        }
       });
     } else {
       console.warn("HLS not supported in this browser.");
