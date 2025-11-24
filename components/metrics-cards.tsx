@@ -24,7 +24,11 @@ import {
   TrendingDown,
   Clock,
   ShoppingCart,
+  AlertTriangle,
+  Info,
+  ShieldCheck,
 } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 import {
   Card,
   CardContent,
@@ -32,12 +36,41 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
+import { Button } from "@/components/ui/button"
 import { AnalyticsRealtime, formatDuration, buildAnalyticsSeries } from "@/lib/utils"
+import {
+  generateOperationalSuggestions,
+  type SuggestionSeverity,
+} from "@/lib/suggestions"
+import { useSuggestionPanelState } from "@/hooks/use-suggestions-panel"
 
 interface MetricsCardsProps {
   analytics?: AnalyticsRealtime | null
   history?: AnalyticsRealtime[] | null
+}
+
+const severityStyles: Record<
+  SuggestionSeverity,
+  { label: string; badgeClass: string; textClass: string; icon: LucideIcon }
+> = {
+  critical: {
+    label: "Critical",
+    badgeClass: "border-red-500/40 bg-red-500/5",
+    textClass: "text-red-500",
+    icon: AlertTriangle,
+  },
+  warning: {
+    label: "Watch",
+    badgeClass: "border-amber-500/40 bg-amber-500/5",
+    textClass: "text-amber-500",
+    icon: Info,
+  },
+  info: {
+    label: "Info",
+    badgeClass: "border-emerald-500/30 bg-emerald-500/5",
+    textClass: "text-emerald-500",
+    icon: ShieldCheck,
+  },
 }
 
 export function MetricsCards({ analytics, history }: MetricsCardsProps) {
@@ -114,6 +147,24 @@ export function MetricsCards({ analytics, history }: MetricsCardsProps) {
     intervalMs: 250,
     windowMs: 30_000,
   })
+
+  const suggestions = useMemo(
+    () =>
+      generateOperationalSuggestions({
+        latest: analytics ?? null,
+        history: history ?? null,
+      }),
+    [analytics, history]
+  )
+
+  const {
+    visibleSuggestions,
+    dismissedSuggestions,
+    dismissSuggestion,
+    restoreSuggestion,
+    updateNote,
+    getNote,
+  } = useSuggestionPanelState(suggestions)
 
   return (
     <div className="bento-box grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(160px,auto)] gap-4 px-4 py-6 rounded-3xl">
@@ -255,12 +306,92 @@ export function MetricsCards({ analytics, history }: MetricsCardsProps) {
             <CardTitle>Suggestions & Alerts</CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="relative z-10 flex-1 text-muted-foreground">
-          <div className="w-full h-full min-h-[90px] rounded bg-muted/5 border border-dashed border-muted/20 flex items-center justify-center text-xs">
-            {analytics
-              ? "No alerts (thresholds not breached)"
-              : "Waiting for data..."}
-          </div>
+        <CardContent className="relative z-10 flex-1">
+          {visibleSuggestions.length ? (
+            <ul className="flex flex-col gap-3">
+              {visibleSuggestions.map((suggestion) => {
+                const meta = severityStyles[suggestion.severity]
+                const Icon = meta.icon
+                return (
+                  <li
+                    key={suggestion.id}
+                    className={`rounded-2xl border px-3 py-3 text-sm ${meta.badgeClass}`}
+                  >
+                    <div className="flex items-center justify-between gap-2 font-medium">
+                      <span className="flex items-center gap-2">
+                        <Icon
+                          className={`size-4 ${meta.textClass}`}
+                          aria-hidden="true"
+                        />
+                        {suggestion.title}
+                      </span>
+                      <span
+                        className={`text-[11px] font-semibold uppercase tracking-wide ${meta.textClass}`}
+                      >
+                        {meta.label}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {suggestion.description}
+                    </p>
+                    <div className="mt-2 text-[11px] font-medium text-muted-foreground/80">
+                      {suggestion.metricSummary}
+                    </div>
+                    <textarea
+                      className="mt-3 w-full rounded-2xl border border-muted/30 bg-background/80 p-2 text-xs text-muted-foreground outline-none transition focus:border-primary/40 focus:ring-2 focus:ring-primary/30"
+                      rows={2}
+                      placeholder="Add a quick shift note (saved locally)"
+                      value={getNote(suggestion.id)}
+                      onChange={(event) => updateNote(suggestion.id, event.target.value)}
+                    />
+                    <div className="mt-2 flex items-center justify-between text-[11px] text-muted-foreground">
+                      <span>{getNote(suggestion.id) ? "Note saved" : "No note yet"}</span>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        className="h-6 px-2 text-[11px] font-semibold text-muted-foreground hover:text-foreground"
+                        onClick={() => dismissSuggestion(suggestion.id)}
+                      >
+                        Dismiss
+                      </Button>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          ) : (
+            <div className="w-full h-full min-h-[90px] rounded bg-muted/5 border border-dashed border-muted/20 flex items-center justify-center text-xs text-muted-foreground">
+              {suggestions.length
+                ? "All caught up — everything dismissed"
+                : analytics
+                  ? "Line looks healthy — no action needed"
+                  : "Waiting for data..."}
+            </div>
+          )}
+          {dismissedSuggestions.length ? (
+            <div className="mt-4 rounded-2xl border border-dashed border-muted/30 bg-muted/5 p-3">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                Dismissed
+              </div>
+              <ul className="mt-2 flex flex-col gap-2 text-xs text-muted-foreground">
+                {dismissedSuggestions.map((suggestion) => (
+                  <li key={suggestion.id} className="flex items-center justify-between gap-2">
+                    <span className="truncate">{suggestion.title}</span>
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="ghost"
+                      className="h-6 px-2 text-[11px] font-semibold text-muted-foreground hover:text-foreground"
+                      onClick={() => restoreSuggestion(suggestion.id)}
+                    >
+                      Restore
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </CardContent>
       </Card>
 
