@@ -120,9 +120,10 @@ export default function VideoPlayer({
     const el = videoRef.current;
     if (!el) return;
     if (el.requestFullscreen) el.requestFullscreen();
-    // fallback for webkit
-    // @ts-ignore
-    else if (el.webkitEnterFullscreen) el.webkitEnterFullscreen();
+    // fallback for webkit-based browsers (Safari iOS, etc.)
+    else if ((el as any).webkitEnterFullscreen) {
+      (el as any).webkitEnterFullscreen();
+    }
   }
 
   function formatTime(s: number) {
