@@ -15,12 +15,12 @@ export default function NavBar() {
 
     return (
         <>
-        <nav className="flex flex-col bg-white text-black py-8 shadow-sm">
+        <nav className="relative overflow-hidden flex flex-col bg-gradient-to-t from-primary/6 to-card text-card-foreground py-8 shadow-sm">
             <div className="container flex justify-between items-center">
 
                 {/* Logo */}
                 <div>
-                    <p className="text-xl uppercase tracking-wider font-bold">Swift Serve</p>
+                    <p className="text-xl uppercase tracking-wider font-bold dark:text-white">Swift Serve</p>
                 </div>
 
                 {/* Desktop */}
@@ -30,8 +30,8 @@ export default function NavBar() {
 
                 {/* Small Screens */}
                 <div className='block md:hidden'>
-                    <IconMenu2  color="black" size={38} className={`cursor-pointer  ${!menuExpanded ? "block" : "hidden"}`} onClick={toggleBurgerMenu}/>
-                    <IconX  color="black" size={38} className={`cursor-pointer  ${menuExpanded ? "block" : "hidden"}`} onClick={toggleBurgerMenu}/>
+                    <IconMenu2 size={38} className={`cursor-pointer text-black dark:text-white ${!menuExpanded ? "block" : "hidden"}`} onClick={toggleBurgerMenu}/>
+                    <IconX size={38} className={`cursor-pointer text-black dark:text-white ${menuExpanded ? "block" : "hidden"}`} onClick={toggleBurgerMenu}/>
 
                 </div>
 
@@ -42,7 +42,7 @@ export default function NavBar() {
             
         </nav>
         {menuExpanded && (
-                <ul className={`flex flex-col justify-center items-center gap-8 text-lg bg-gray-300 text-black py-8`}> 
+            <ul className={`flex flex-col justify-center items-center gap-8 text-lg bg-gradient-to-t from-primary/6 to-card text-card-foreground py-8`}> 
                     <NavLink href={"/dashboard"}>Login</NavLink>   
                 </ul>
             )}

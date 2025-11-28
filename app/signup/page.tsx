@@ -5,8 +5,15 @@ import Layout from "@/components/layout"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card"
 
-const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?`~]).{8,}$/
+const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?`~]).{8,}$/
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // Accept exactly 10 digits (numbers only)
 const phoneRegex = /^\d{10}$/
@@ -54,6 +61,7 @@ export default function SignupPage() {
     return {
       length: password.length >= 8,
       uppercase: /[A-Z]/.test(password),
+      lowercase: /[a-z]/.test(password),
       number: /\d/.test(password),
       special: /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?`~]/.test(password),
       full: passwordRegex.test(password),
@@ -86,10 +94,13 @@ export default function SignupPage() {
 
   return (
     <Layout>
-      <div className="container max-w-2xl py-10 shadow-lg my-8 rounded-lg border border-gray-200">
-        <h1 className="mb-6 text-3xl font-bold">Create an account</h1>
-
-        <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+      <Card className="mx-auto w-full max-w-2xl my-8">
+        <CardHeader>
+          <CardTitle className="text-3xl">Create an account</CardTitle>
+          <CardDescription>Enter your details to create your account.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="space-y-6" onSubmit={handleSubmit} noValidate>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label className="mb-2" htmlFor="firstName">First Name</Label>
@@ -193,7 +204,7 @@ export default function SignupPage() {
                 required
               />
 
-              {/* <div className="mt-3 rounded-md border border-border p-3 text-sm">
+              <div className="mt-3 rounded-md border border-border p-3 text-sm">
                 <div className="mb-2 font-medium">Password must contain:</div>
                 <ul className="space-y-1">
                   <li className="flex items-center gap-2">
@@ -217,6 +228,16 @@ export default function SignupPage() {
                     </span>
                   </li>
                   <li className="flex items-center gap-2">
+                    {passwordChecks.lowercase ? (
+                      <span className="text-green-600"><CheckIcon /></span>
+                    ) : (
+                      <span className="text-muted-foreground"><XIcon /></span>
+                    )}
+                    <span className={passwordChecks.lowercase ? "text-slate-700" : "text-muted-foreground"}>
+                      At least one lowercase letter
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-2">
                     {passwordChecks.number ? (
                       <span className="text-green-600"><CheckIcon /></span>
                     ) : (
@@ -237,7 +258,7 @@ export default function SignupPage() {
                     </span>
                   </li>
                 </ul>
-              </div> */}
+              </div>
             </div>
 
             <div>
@@ -272,8 +293,9 @@ export default function SignupPage() {
               Sign Up
             </Button>
           </div>
-        </form>
-      </div>
+          </form>
+        </CardContent>
+      </Card>
     </Layout>
   )
 }
