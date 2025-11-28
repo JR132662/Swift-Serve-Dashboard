@@ -26,17 +26,27 @@ export function NavMain({ items }: { items: NavItem[] }) {
         {/* Quick action (turn into link to /dashboard or keep as button if it opens something) */}
         <SidebarMenu>
           <SidebarMenuItem className="flex items-center gap-2">
-            <SidebarMenuButton
-              asChild
-              tooltip="Dashboard"
-              isActive={pathname === "/dashboard"}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
-            >
-              <Link href="/dashboard">
-                <IconCirclePlusFilled />
-                <span>Dashboard</span>
-              </Link>
-            </SidebarMenuButton>
+            {(() => {
+              const dashActive = pathname === "/dashboard"
+              return (
+                <SidebarMenuButton
+                  asChild
+                  tooltip="Dashboard"
+                  isActive={dashActive}
+                  className="min-w-8 duration-200 ease-linear"
+                  style={
+                    dashActive
+                      ? ({ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" } as React.CSSProperties)
+                      : undefined
+                  }
+                >
+                  <Link href="/dashboard">
+                    <IconCirclePlusFilled />
+                    <span>Dashboard</span>
+                  </Link>
+                </SidebarMenuButton>
+              )
+            })()}
           </SidebarMenuItem>
         </SidebarMenu>
 
@@ -50,6 +60,11 @@ export function NavMain({ items }: { items: NavItem[] }) {
                   asChild
                   tooltip={item.title}
                   isActive={active}
+                  style={
+                    active
+                      ? ({ backgroundColor: "var(--primary)", color: "var(--primary-foreground)" } as React.CSSProperties)
+                      : undefined
+                  }
                 >
                   <Link href={item.url}>
                     {item.icon && <item.icon />}
