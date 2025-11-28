@@ -15,6 +15,7 @@ import { ChartContainer, ChartTooltipContent } from "@/components/ui/chart"
 import mockData from "../data/mock-Data"
 import TrafficHeatmap from "@/components/traffic-heatmap"
 import useHeatmapStream from "@/hooks/use-heatmap"
+import VideoPlayer from "@/components/video-player"
 import {
   Timer,
   Flame,
@@ -370,12 +371,21 @@ export function MetricsCards({ analytics, history }: MetricsCardsProps) {
             <CardTitle>Cameras</CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="relative z-10 flex flex-col gap-3">
-          <div className="w-full h-20 rounded bg-muted/10 border border-dashed border-muted/30 flex items-center justify-center text-xs">
-            Pickup Zone
-          </div>
+        <CardContent className="relative z-10 flex-1">
+          {false && (
             <div className="w-full h-20 rounded bg-muted/10 border border-dashed border-muted/30 flex items-center justify-center text-xs">
-            Front Counter
+              Pickup Zone
+            </div>
+          )}
+          <div className="w-full h-full min-h-[160px] rounded-lg overflow-hidden bg-black">
+            <video
+              src="https://rytjsfbyuamtmorciyka.supabase.co/storage/v1/object/public/hls-streams/jetson_1/front/index.m3u8"
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              controls
+              playsInline
+            />
           </div>
         </CardContent>
       </Card>
