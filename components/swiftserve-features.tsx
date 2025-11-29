@@ -42,13 +42,13 @@ export default function SwiftServeFeatures() {
 									>
 										<Icon className="w-6 h-6 text-white" />
 									</div>
-									<h3 className="text-2xl md:text-3xl font-bold text-black">
+									<h3 className="text-2xl md:text-3xl font-bold text-black dark:text-white">
 										{feature.title}
 									</h3>
 								</div>
 
 								{/* Description */}
-								<p className="text-base md:text-lg text-black mb-6 leading-relaxed">
+								<p className="text-base md:text-lg text-black dark:text-white mb-6 leading-relaxed">
 									{feature.description}
 								</p>
 

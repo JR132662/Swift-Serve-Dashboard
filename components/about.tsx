@@ -20,34 +20,34 @@ export default function About() {
 
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-12">
 							<div className="flex items-start gap-3">
-								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-300 text-black font-bold">AI</div>
+								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-300 text-black dark:text-white font-bold">AI</div>
 								<div>
 									<div className="font-semibold">Vision AI</div>
-									<div className="text-sm text-black">Accurate people & flow detection</div>
+									<div className="text-sm text-black dark:text-white">Accurate people & flow detection</div>
 								</div>
 							</div>
 
 							<div className="flex items-start gap-3">
-								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-300 text-black font-bold">RT</div>
+								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-300 text-black dark:text-white font-bold">RT</div>
 								<div>
 									<div className="font-semibold">Real-time</div>
-									<div className="text-sm text-black">Live dashboards & alerts</div>
+									<div className="text-sm text-black dark:text-white">Live dashboards & alerts</div>
 								</div>
 							</div>
 
 							<div className="flex items-start gap-3">
-								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-300 text-black font-bold">NO</div>
+								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-300 text-black dark:text-white font-bold">NO</div>
 								<div>
 									<div className="font-semibold">No extra hardware</div>
-									<div className="text-sm text-black">Works with existing cameras</div>
+									<div className="text-sm text-black dark:text-white">Works with existing cameras</div>
 								</div>
 							</div>
 
 							<div className="flex items-start gap-3">
-								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-300 text-black font-bold">SI</div>
+								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-300 text-black dark:text-white font-bold">SI</div>
 								<div>
 									<div className="font-semibold">Actionable</div>
-									<div className="text-sm text-black">Operational recommendations & reports</div>
+									<div className="text-sm text-black dark:text-white">Operational recommendations & reports</div>
 								</div>
 							</div>
 						</div>

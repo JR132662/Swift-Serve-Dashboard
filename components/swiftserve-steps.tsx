@@ -26,10 +26,10 @@ export default function SwiftServeSteps() {
 			<div className="mx-auto max-w-7xl px-6">
 				{/* Header */}
 				<div className="text-center mb-16">
-					<h2 className="text-4xl md:text-5xl leading-tight mb-4" style={{ color: '#000' }}>
+					<h2 className="text-4xl md:text-5xl leading-tight mb-4 text-black dark:text-white">
 						Three Simple Steps to Success
 					</h2>
-					<p className="text-lg max-w-2xl mx-auto text-black">
+					<p className="text-lg max-w-2xl mx-auto text-black dark:text-white">
 						Transform your restaurant operations in three simple steps. From connecting your existing cameras to gaining real-time insights and automating your workflow, SwiftServe makes it easy to optimize service and improve guest experiences.
 					</p>
 				</div>
@@ -55,7 +55,7 @@ export default function SwiftServeSteps() {
 								>
 									{step.title}
 								</h3>
-								<p className="text-sm md:text-base text-black max-w-sm">
+								<p className="text-sm md:text-base text-black dark:text-white max-w-sm">
 									{step.description}
 								</p>
 

@@ -6,7 +6,7 @@ export default function ProblemSolution() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center mb-10">
           <h1 className="text-4xl md:text-4xl leading-tight">The challenge restaurants face</h1>
-          <p className="mt-3 text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="mt-3 text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
             Restaurants need fast, accurate visibility into guest flow and service performance — but current approaches are slow, expensive, or invasive.
           </p>
         </div>
@@ -14,7 +14,7 @@ export default function ProblemSolution() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <div className="space-y-6">
             <h3 className="text-xl font-bold">Common problems</h3>
-            <ul className="space-y-4 text-neutral-700">
+            <ul className="space-y-4 text-neutral-700 dark:text-neutral-300">
               <li>
                 <strong className="mr-2">No real-time visibility:</strong>
                 Managers rely on spot checks and manual reporting, which miss transient problems.
@@ -36,7 +36,7 @@ export default function ProblemSolution() {
 
           <div className="space-y-6">
             <h3 className="text-xl font-bold">How SwiftServe solves it</h3>
-            <ul className="space-y-4 text-neutral-700">
+            <ul className="space-y-4 text-neutral-700 dark:text-neutral-300">
               <li>
                 <strong className="mr-2">Vision AI from existing cameras:</strong>
                 No new sensors — we analyze feeds to produce accurate, privacy-respecting metrics.
