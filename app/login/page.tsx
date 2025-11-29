@@ -3,6 +3,8 @@
 import Layout from '@/components/layout'
 
 import Link from 'next/link'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -32,6 +34,10 @@ import { loginFormSchema } from '@/lib/validation-schemas'
 const formSchema = loginFormSchema
 
 export default function LoginPreview() {
+  const router = useRouter()
+
+  const [isLoading, setIsLoading] = useState(false)
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,17 +47,41 @@ export default function LoginPreview() {
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!values?.email || !values?.password) return
+    setIsLoading(true)
     try {
-      // Assuming an async login function
-      console.log(values)
-      toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>,
-      )
-    } catch (error) {
-      console.error('Form submission error', error)
-      toast.error('Failed to submit the form. Please try again.')
+      const res = await fetch('http://localhost:8080/user/login', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: values.email.trim(), password: values.password }),
+      })
+
+      const data = await res.json().catch(() => ({}))
+
+      if (res.ok) {
+        // store token (consider HttpOnly cookie in production)
+        toast.success('Logged in')
+        router.push('/dashboard')
+        return
+      }
+
+      // If server indicates invalid credentials, show field-level error
+      if (res.status === 400) {
+        const message = data?.error || data?.message || 'Invalid login credentials'
+        // show the message under the password input
+        form.setError('password', { type: 'server', message })
+        // clear any email-specific errors
+        form.clearErrors('email')
+        toast.error(message)
+        return
+      }
+
+      toast.error(data?.error || data?.message || 'Login failed')
+    } catch (err) {
+      console.error('Login error', err)
+      toast.error('Network error during login')
+      setIsLoading(false)
     }
   }
 
@@ -116,8 +146,14 @@ export default function LoginPreview() {
                       </FormItem>
                     )}
                   />
-                  <Button size={"lg"} type="submit" className="w-full cursor-pointer text-lg">
-                    Login
+                  <Button size={"lg"} type="submit" className="w-full cursor-pointer text-lg flex items-center justify-center gap-2" disabled={isLoading}>
+                    {isLoading && (
+                      <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                      </svg>
+                    )}
+                    <span>{isLoading ? 'Signing in…' : 'Login'}</span>
                   </Button>
                   <Button size={"lg"} variant="outline" className="w-full cursor-pointer text-lg">
                     Login with Google
