@@ -137,7 +137,7 @@ body {
 }
 
 :root {
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-space-grotesk);
   --header-height: calc(var(--spacing) * 12 + 1px);
 }
 
@@ -254,3 +254,11 @@ body {
       @apply w-full mx-auto px-4 md:px-6 lg:px-8 xl:px-12 max-w-4xl;
     }
   }
+
+
+.not-themed,
+.not-themed * {
+  background: inherit !important;
+  color: inherit !important;
+  /* Add more overrides if needed */
+}

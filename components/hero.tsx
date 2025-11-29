@@ -5,6 +5,11 @@ import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { TextEffect } from '@/components/motion-primitives/text-effect'
 import { AnimatedGroup } from '@/components/motion-primitives/animated-group'
+import dynamic from 'next/dynamic'
+import { Marquee, MarqueeContent, MarqueeItem } from '@/components/ui/marquee'
+
+// RippleGrid is a WebGL client-only component; import dynamically with SSR disabled
+const RippleGrid = dynamic(() => import('@/components/RippleGrid'))
 
 const transitionVariants = {
     item: {
@@ -28,6 +33,19 @@ export default function Hero() {
     return (
         <>
             <main className="overflow-hidden">
+                {/* RippleGrid background (client-only) */}
+                <div className="absolute inset-0 -z-20 pointer-events-none">
+                    <RippleGrid
+                        enableRainbow={false}
+                        gridColor="#D97706"
+                        rippleIntensity={0.01}
+                        gridSize={6.0}
+                        gridThickness={29.0}
+                        mouseInteraction={true}
+                        mouseInteractionRadius={1}
+                        opacity={1}
+                    />
+                </div>
                 <div
                     aria-hidden
                     className="absolute inset-0 isolate hidden opacity-65 contain-strict lg:block">
@@ -103,7 +121,7 @@ export default function Hero() {
                                     speedSegment={0.3}
                                     delay={0.5}
                                     as="p"
-                                    className="mx-auto mt-8 max-w-2xl text-balance text-lg">
+                                    className="mx-auto mt-8 max-w-2xl text-balance text-lg text-shadow-lg">
                                     SwiftServe turns existing camera feeds into privacy-first, real-time insights that reveal guest flow, wait times, and service performance.
                                     <br />
                                     Deploys in hours and integrates with POS and analytics tools to deliver live alerts and actionable recommendations that reduce wait and improve throughput.
@@ -124,7 +142,7 @@ export default function Hero() {
                                     className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
                                     <div
                                         key={1}
-                                        className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
+                                        className="rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5 bg-[#ba6908]">
                                         <Button
                                             asChild
                                             size="lg"
@@ -162,97 +180,51 @@ export default function Hero() {
                             }}>
                             <div className="mask-b-from-85% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
                                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                                        <Image
-                                            className="bg-background aspect-15/8 relative rounded-2xl"
-                                            src="/Images/Dashboard.png"
-                                            alt="app screen"
-                                            width={2700}
-                                            height={1440}
-                                        />
+                                    <Image
+                                        className="bg-background aspect-15/8 relative rounded-2xl"
+                                        src="/Images/Dashboard.png"
+                                        alt="app screen"
+                                        width={2700}
+                                        height={1440}
+                                    />
                                 </div>
                             </div>
                         </AnimatedGroup>
                     </div>
                 </section>
-                <section className="bg-background pb-16 pt-16 md:pb-32">
-                    <div className="group relative m-auto max-w-5xl px-6">
-                        <div className=" mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 sm:gap-x-16 sm:gap-y-14">
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                    alt="Nvidia Logo"
-                                    height="20"
-                                    width="auto"
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/column.svg"
-                                    alt="Column Logo"
-                                    height="16"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/github.svg"
-                                    alt="GitHub Logo"
-                                    height="16"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/nike.svg"
-                                    alt="Nike Logo"
-                                    height="20"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-5 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                    alt="Lemon Squeezy Logo"
-                                    height="20"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-4 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                    alt="Laravel Logo"
-                                    height="16"
-                                    width="auto"
-                                />
-                            </div>
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-7 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                    alt="Lilly Logo"
-                                    height="28"
-                                    width="auto"
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <img
-                                    className="mx-auto h-6 w-fit dark:invert"
-                                    src="https://html.tailus.io/blocks/customers/openai.svg"
-                                    alt="OpenAI Logo"
-                                    height="24"
-                                    width="auto"
-                                />
-                            </div>
-                        </div>
-                    </div>
+                <section className="bg-background pb-16 pt-30 md:pb-32">
+                    <h2 className="text-center text-4xl md:text-5xl leading-tight">Easy Integration with Your Favorite POS Systems</h2>
+                    <Marquee className="mt-20">
+                            <MarqueeContent>
+                                <MarqueeItem className="flex items-center justify-center h-20 w-full mx-12">
+                                    <img
+                                        className="h-20 w-fit"
+                                        src="/Images/Clover_mobile_app_Logo.svg.png"
+                                        alt="Clover Logo"
+                                        height="26"
+                                        width="auto"
+                                    />
+                                </MarqueeItem>
+                                <MarqueeItem className="flex items-center justify-center h-20 w-full mx-12">
+                                    <img
+                                        className="h-20 w-fit"
+                                        src="/Images/Square_Inc._logo.svg_.png"
+                                        alt="Square Logo"
+                                        height="26"
+                                        width="auto"
+                                    />
+                                </MarqueeItem>
+                                <MarqueeItem className="flex items-center justify-center h-20 w-full mx-12">
+                                    <img
+                                        className="h-20 w-fit"
+                                        src="/Images/Toast_logo.svg.png"
+                                        alt="Toast Logo"
+                                        height="26"
+                                        width="auto"
+                                    />
+                                </MarqueeItem>
+                            </MarqueeContent>
+                        </Marquee>
                 </section>
             </main>
         </>

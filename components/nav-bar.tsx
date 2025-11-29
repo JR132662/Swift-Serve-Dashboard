@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react';
-import Link from 'next/link'
 import NavLink from './nav-link'
 import { IconMenu2, IconX } from "@tabler/icons-react"
 
@@ -15,7 +14,7 @@ export default function NavBar() {
 
     return (
         <>
-        <nav className="relative overflow-hidden flex flex-col bg-gradient-to-t from-primary/6 to-card text-card-foreground py-8 shadow-sm">
+        <nav className="relative flex flex-col bg-background text-card-foreground py-8">
             <div className="container flex justify-between items-center">
 
                 {/* Logo */}

@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 
 import "./globals.css";
 
@@ -7,6 +8,38 @@ import { cn } from "@/lib/utils";
 
 import { ThemeProvider } from "@/components/theme-provider"
 import { ActiveThemeProvider } from "@/components/active-theme";
+
+const spaceGrotesk = localFont({
+  src: [
+    {
+      path: "../public/fonts/SpaceGrotesk-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SpaceGrotesk-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SpaceGrotesk-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SpaceGrotesk-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/SpaceGrotesk-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "SwiftServe Dashboard",
@@ -27,6 +60,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
+          spaceGrotesk.variable,
           "bg-background overscroll-none font-sans antialiased",
           activeThemeValue ? `theme-${activeThemeValue}` : "",
           isScaled ? "theme-scaled" : ""
