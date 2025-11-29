@@ -5,8 +5,6 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "build:classic": "next build",
-    "build:turbopack": "next build --turbopack",
     "start": "next start",
     "lint": "eslint"
   },
@@ -67,3 +65,4 @@
     "typescript": "^5"
   }
 }
+
