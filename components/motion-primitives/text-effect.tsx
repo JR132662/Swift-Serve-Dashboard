@@ -4,7 +4,7 @@ import React from "react"
 import { motion } from "framer-motion"
 
 type TextEffectProps = {
-  as?: keyof JSX.IntrinsicElements
+  as?: keyof React.JSX.IntrinsicElements
   preset?: string
   per?: "line" | "word" | "char"
   speedSegment?: number

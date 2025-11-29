@@ -4,11 +4,19 @@ import * as React from "react";
 import * as RadixAccordion from "@radix-ui/react-accordion";
 import { IconChevronDown } from "@tabler/icons-react";
 
-interface AccordionProps extends React.ComponentProps<typeof RadixAccordion.Root> {}
+type AccordionType = "single" | "multiple";
+
+type AccordionProps = React.HTMLAttributes<HTMLDivElement> & {
+  type?: AccordionType;
+  collapsible?: boolean;
+  className?: string;
+  [key: string]: any;
+};
 
 export function Accordion({ children, className, ...props }: React.PropsWithChildren<AccordionProps>) {
   return (
-    <RadixAccordion.Root {...props} className={`w-full ${className ?? ""}`}>
+    // cast props to any to avoid Radix union prop type incompatibilities in our wrapper
+    <RadixAccordion.Root {...(props as any)} className={`w-full ${className ?? ""}`}>
       {children}
     </RadixAccordion.Root>
   );
