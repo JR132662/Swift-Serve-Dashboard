@@ -1,6 +1,15 @@
 // app/page.tsx
-import { redirect } from 'next/navigation';
+import Hero from '@/components/hero'
+import Layout from '@/components/layout'
+import About from '@/components/about'
+import FAQs from '@/components/faq'
 
 export default function Home() {
-  redirect('/dashboard');
+  return (
+    <Layout>
+        <Hero />
+        <About />
+        <FAQs />
+    </Layout>
+  )
 }
