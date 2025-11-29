@@ -1,5 +1,6 @@
 "use client"
 import * as React from "react"
+import { resolveCssColor } from '@/utils/theme-colors'
 
 export type TrafficHeatmapProps = {
   /** Provide a pre-binned matrix (rows x cols). If omitted, you can pass `points` and specify rows/cols for binning. */
@@ -41,7 +42,15 @@ function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n))
 }
 
-function toRGBA(hex: string, alpha: number) {
+function toRGBA(hexOrCss: string, alpha: number) {
+  let hex = hexOrCss
+  if (!hex || hex.startsWith('var(') || /[a-zA-Z()]/.test(hex) && !hex.startsWith('#')) {
+    try {
+      hex = resolveCssColor(hexOrCss)
+    } catch (e) {
+      hex = '#3b82f6'
+    }
+  }
   const sanitized = hex.replace('#', '')
   const bigint = parseInt(sanitized.length === 3
     ? sanitized.split('').map((c) => c + c).join('')
@@ -96,7 +105,7 @@ export function TrafficHeatmap({
   colLabels,
   min = 0,
   max,
-  baseColor = "#3b82f6", // Tailwind blue-500
+  baseColor = "var(--color-series, var(--primary))", // theme-aware: series fallback to primary
   overlayPaths,
   fit = 'cover',
   backgroundImageUrl,
