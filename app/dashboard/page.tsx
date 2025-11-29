@@ -4,6 +4,7 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { createClient } from '@/utils/supabase/server'
 import { AnalyticsFeed } from '@/components/dashboard-component/supabase-realtime'
 import { AnalyticsRealtime } from '@/lib/utils'
+import { cookies } from "next/headers"
 
 export const revalidate = 0 // ensure dynamic
 
@@ -23,6 +24,19 @@ export default async function Page() {
 
   // Build a pseudo latest analytics object for tiles (keep shape expected by components).
   // Client handles averaging dynamically; keep variable removed
+  // Fetch verify route (cookies are forwarded automatically in server components)
+  const res = await fetch("http://localhost:8080/user/verify", {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      Cookie: cookies().toString(), // ⭐ this magically forwards HttpOnly cookies
+    },
+    cache: "no-store",
+  })
+
+  const data = await res.json()
+
+  console.log("VERIFY RESULT (server):", data)
 
   return (
     <SidebarProvider

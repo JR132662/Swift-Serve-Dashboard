@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { ModeToggle } from "@/components/ui/mode-toggle"
+import LogoutButton from "@/components/logout-button"
 import { ThemeSelector } from "./theme-selector"
 import { ExportPdfButton } from './export-pdf-button'
 import { WeatherWidget } from './weather-widget'
@@ -19,6 +20,7 @@ export function SiteHeader() {
             <ThemeSelector />
           </div>
           <ModeToggle />
+          <LogoutButton />
         </div>
       </div>
     </header>

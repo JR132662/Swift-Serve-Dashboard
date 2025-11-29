@@ -2,9 +2,11 @@
 
 import React, { useMemo, useState } from "react"
 import Layout from "@/components/layout"
+import { useRouter } from 'next/navigation';
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import { toast } from 'sonner'
 import {
   Card,
   CardHeader,
@@ -56,6 +58,9 @@ export default function SignupPage() {
   const [phone, setPhone] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+
+  const router = useRouter();
 
   const passwordChecks = useMemo(() => {
     return {
@@ -85,11 +90,45 @@ export default function SignupPage() {
     passwordsMatch &&
     passwordChecks.full
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!canSubmit) return
-    // Replace with actual submit logic (API call)
-    alert("Signup successful (demo). Replace with real API call.")
+    setIsLoading(true)
+    const payload = {
+      email: normalizedEmail,
+      password,
+      phone_number: phone,
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+    }
+
+    try {
+      const res = await fetch('http://localhost:8080/user/signup', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+
+      const data = await res.json().catch(() => ({}))
+
+      if (res.ok) {
+        // optionally store token: data.token
+        // localStorage.setItem('auth_token', data.token)
+        toast.success(data?.message || 'Account created')
+
+        router.push('/dashboard')
+        return
+      }
+
+      // show server error via toast and re-enable button
+      toast.error(data?.error || data?.message || 'Signup failed')
+      setIsLoading(false)
+    } catch (err) {
+      console.error('Signup error', err)
+      toast.error('Network error while signing up')
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -289,8 +328,14 @@ export default function SignupPage() {
           </div>
 
           <div className="flex items-center justify-center gap-4">
-            <Button className="text-lg py-6" type="submit" disabled={!canSubmit}>
-              Sign Up
+            <Button className="text-lg py-6 flex items-center justify-center gap-2" type="submit" disabled={!canSubmit || isLoading} aria-busy={isLoading}>
+              {isLoading && (
+                <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden>
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+              )}
+              <span>{isLoading ? 'Creating account…' : 'Sign Up'}</span>
             </Button>
           </div>
           </form>
