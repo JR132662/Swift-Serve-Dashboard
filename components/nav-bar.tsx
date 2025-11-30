@@ -14,7 +14,7 @@ export default function NavBar() {
 
     return (
         <>
-        <nav className="relative flex flex-col bg-background text-card-foreground py-8">
+        <nav className="relative flex flex-col bg-background text-card-foreground py-8 sm:shadow-sm">
             <div className="container flex justify-between items-center">
 
                 {/* Logo */}

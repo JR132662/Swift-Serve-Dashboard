@@ -38,7 +38,7 @@ export default function Hero() {
                     <RippleGrid
                         enableRainbow={false}
                         gridColor="#D97706"
-                        rippleIntensity={0.01}
+                        rippleIntensity={0.005}
                         gridSize={6.0}
                         gridThickness={29.0}
                         mouseInteraction={true}

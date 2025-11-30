@@ -1,6 +1,7 @@
 "use client";
 
 import { Camera, BarChart3, Plug } from 'lucide-react';
+import { ScrollAnimation, StaggerContainer } from '@/components/motion-primitives/scroll-animation'
 
 export default function SwiftServeSteps() {
 	const steps = [
@@ -25,6 +26,7 @@ export default function SwiftServeSteps() {
 		<section className="w-full relative z-20 py-20 bg-background">
 			<div className="mx-auto max-w-7xl px-6">
 				{/* Header */}
+				<ScrollAnimation direction="up" delay={0.1}>
 				<div className="text-center mb-16">
 					<h2 className="text-4xl md:text-5xl leading-tight mb-4 text-black dark:text-white">
 						Three Simple Steps to Success
@@ -33,9 +35,10 @@ export default function SwiftServeSteps() {
 						Transform your restaurant operations in three simple steps. From connecting your existing cameras to gaining real-time insights and automating your workflow, SwiftServe makes it easy to optimize service and improve guest experiences.
 					</p>
 				</div>
+				</ScrollAnimation>
 
 				{/* Three Steps */}
-				<div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 mb-16">
+				<StaggerContainer className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 mb-16" staggerDelay={0.15} direction="up">
 					{steps.map((step, index) => {
 						const Icon = step.icon;
 						return (
@@ -85,10 +88,10 @@ export default function SwiftServeSteps() {
 							</div>
 						);
 					})}
-				</div>
+				</StaggerContainer>
 
 				{/* Bottom Cards */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+				<StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto" staggerDelay={0.2} direction="scale">
 					{/* Color Arrangement Circle */}
 					<div className="rounded-2xl border p-6 bg-card">
 						<div className="flex items-center gap-2 mb-4">
@@ -207,7 +210,7 @@ export default function SwiftServeSteps() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</StaggerContainer>
 			</div>
 		</section>
 	);

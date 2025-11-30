@@ -1,6 +1,7 @@
 "use client";
 
 import { Brain, LayoutDashboard, Zap, Users } from 'lucide-react';
+import { StaggerContainer } from '@/components/motion-primitives/scroll-animation'
 
 export default function SwiftServeFeatures() {
 	const features = [
@@ -29,7 +30,7 @@ export default function SwiftServeFeatures() {
 	return (
 		<section className="w-full relative z-20 py-20 bg-background">
 			<div className="mx-auto max-w-7xl px-6">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+				<StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12" staggerDelay={0.15} direction="up">
 					{features.map((feature, index) => {
 						const Icon = feature.icon;
 						return (
@@ -42,7 +43,7 @@ export default function SwiftServeFeatures() {
 									>
 										<Icon className="w-6 h-6 text-white" />
 									</div>
-									<h3 className="text-2xl md:text-3xl font-bold text-black dark:text-white">
+									<h3 className="text-4xl md:text-5xl leading-tight mb-4 text-black dark:text-white">
 										{feature.title}
 									</h3>
 								</div>
@@ -68,7 +69,7 @@ export default function SwiftServeFeatures() {
 							</div>
 						);
 					})}
-				</div>
+				</StaggerContainer>
 			</div>
 		</section>
 	);

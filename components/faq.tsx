@@ -3,6 +3,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import Link from 'next/link'
 import ProblemSolution from './problem-solution'
+import { ScrollAnimation } from '@/components/motion-primitives/scroll-animation'
 
 export default function FAQs() {
     const faqItems = [
@@ -36,11 +37,14 @@ export default function FAQs() {
     return (
         <section className=" py-16 md:py-24">
             <div className="mx-auto max-w-5xl px-4 md:px-6">
+                <ScrollAnimation direction="up" delay={0.1}>
                 <div>
                     <h2 className="text-foreground text-4xl font-semibold">Frequently Asked Questions</h2>
                     <p className="text-muted-foreground mt-4 text-balance text-lg">Discover quick and comprehensive answers to common questions about our platform, services, and features.</p>
                 </div>
+                </ScrollAnimation>
 
+                <ScrollAnimation direction="fade" delay={0.3} duration={0.8}>
                 <div className="mt-12">
                     <Accordion
                         type="single"
@@ -79,6 +83,7 @@ export default function FAQs() {
                         </Link>
                     </p>
                 </div>
+                </ScrollAnimation>
             </div>
         </section>
     )

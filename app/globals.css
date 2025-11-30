@@ -255,10 +255,14 @@ body {
     }
   }
 
-
 .not-themed,
 .not-themed * {
   background: inherit !important;
   color: inherit !important;
   /* Add more overrides if needed */
+}
+
+::view-transition-old(root), ::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
 }

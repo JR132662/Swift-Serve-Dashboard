@@ -1,11 +1,14 @@
 "use client";
 
+import { ScrollAnimation, StaggerContainer } from '@/components/motion-primitives/scroll-animation'
+
 export default function About() {
 	return (
 		<section className="w-full relative z-20 py-20" style={{ background: 'var(--card)', color: 'var(--card-foreground)' }}>
 			<div className="mx-auto max-w-7xl px-6 gap-7">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-15 items-center">
 					{/* Left: copy */}
+					<ScrollAnimation direction="right" delay={0.1}>
 					<div>
 						<h2 className="text-4xl md:text-5xl leading-tight mb-4">
 							Built for restaurants. Designed for results.
@@ -18,7 +21,7 @@ export default function About() {
 							installing sensors.
 						</p>
 
-						<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-12">
+						<StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 mt-12" staggerDelay={0.1} direction="fade">
 							<div className="flex items-start gap-3">
 								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-300 text-black dark:text-white font-bold">AI</div>
 								<div>
@@ -50,7 +53,7 @@ export default function About() {
 									<div className="text-sm text-black dark:text-white">Operational recommendations & reports</div>
 								</div>
 							</div>
-						</div>
+						</StaggerContainer>
 
 						<div className="flex flex-wrap gap-4">
 							<a className="inline-block rounded-md px-6 py-3 font-medium" href="#" style={{ background: '#ba6908', color: 'var(--primary-foreground)' }}>
@@ -61,8 +64,10 @@ export default function About() {
 							</a>
 						</div>
 					</div>
+					</ScrollAnimation>
 
 					{/* Right: visual / stats card */}
+					<ScrollAnimation direction="left" delay={0.2}>
 					<div className="relative">
 						<div className="rounded-2xl border p-6" style={{ borderColor: 'var(--border)' }}>
 							<div className="flex items-center justify-between mb-6">
@@ -86,6 +91,7 @@ export default function About() {
 							</div>
 						</div>
 					</div>
+					</ScrollAnimation>
 				</div>
 			</div>
 		</section>
