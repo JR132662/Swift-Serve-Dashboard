@@ -196,31 +196,25 @@ export default function Hero() {
                     <h2 className="text-center text-4xl md:text-5xl leading-tight">Easy Integration with Your Favorite POS Systems</h2>
                     <Marquee className="mt-8 md:mt-20">
                             <MarqueeContent>
-                                <MarqueeItem className="flex items-center justify-center h-12 sm:h-16 md:h-20 w-full mx-4 sm:mx-8 md:mx-12">
+                                <MarqueeItem className="flex items-center justify-center mx-4 sm:mx-8 md:mx-12">
                                     <img
-                                        className="h-12 sm:h-16 md:h-20 w-fit"
+                                        className="max-h-12 sm:max-h-16 md:max-h-20 w-auto object-contain"
                                         src="/Images/Clover_mobile_app_Logo.svg.png"
                                         alt="Clover Logo"
-                                        height="26"
-                                        width="auto"
                                     />
                                 </MarqueeItem>
-                                <MarqueeItem className="flex items-center justify-center h-12 sm:h-16 md:h-20 w-full mx-4 sm:mx-8 md:mx-12">
+                                <MarqueeItem className="flex items-center justify-center mx-4 sm:mx-8 md:mx-12">
                                     <img
-                                        className="h-12 sm:h-16 md:h-20 w-fit"
+                                        className="max-h-12 sm:max-h-16 md:max-h-20 w-auto object-contain"
                                         src="/Images/Square_Inc._logo.svg_.png"
                                         alt="Square Logo"
-                                        height="26"
-                                        width="auto"
                                     />
                                 </MarqueeItem>
-                                <MarqueeItem className="flex items-center justify-center h-12 sm:h-16 md:h-20 w-full mx-4 sm:mx-8 md:mx-12">
+                                <MarqueeItem className="flex items-center justify-center mx-4 sm:mx-8 md:mx-12">
                                     <img
-                                        className="h-12 sm:h-16 md:h-20 w-fit"
+                                        className="max-h-12 sm:max-h-16 md:max-h-20 w-auto object-contain"
                                         src="/Images/Toast_logo.svg.png"
                                         alt="Toast Logo"
-                                        height="26"
-                                        width="auto"
                                     />
                                 </MarqueeItem>
                             </MarqueeContent>
