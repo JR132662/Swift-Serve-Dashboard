@@ -6,6 +6,7 @@ import LogoutButton from "@/components/logout-button"
 import { ThemeSelector } from "./theme-selector"
 import { ExportPdfButton } from './export-pdf-button'
 import { WeatherWidget } from './weather-widget'
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler" 
 
 export function SiteHeader() {
   return (

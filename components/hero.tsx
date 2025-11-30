@@ -205,7 +205,7 @@ export default function Hero() {
                                 </MarqueeItem>
                                 <MarqueeItem className="flex items-center justify-center mx-4 sm:mx-8 md:mx-12">
                                     <img
-                                        className="max-h-12 sm:max-h-16 md:max-h-20 w-auto object-contain"
+                                        className="max-h-12 sm:max-h-16 md:max-h-20 w-auto object-contain dark:brightness-0 dark:invert"
                                         src="/Images/Square_Inc._logo.svg_.png"
                                         alt="Square Logo"
                                     />

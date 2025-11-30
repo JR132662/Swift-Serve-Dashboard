@@ -104,13 +104,14 @@ export default function ThemeCarousel({
         ...transitionVariants,
       }}>
       <div 
-        className="mask-b-from-85% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20"
+        className="mask-b-from-85% relative mt-8 overflow-hidden px-2 sm:mt-12 md:mt-20 w-full"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        style={{ touchAction: 'pan-y' }}
       >
-        <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
+        <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1 w-full">
           {/* Carousel Container */}
-          <div className="relative aspect-15/8 overflow-hidden rounded-2xl bg-background">
+          <div className="relative aspect-15/8 overflow-hidden rounded-2xl bg-background w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
