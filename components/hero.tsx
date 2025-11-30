@@ -192,31 +192,31 @@ export default function Hero() {
                         </AnimatedGroup>
                     </div>
                 </section>
-                <section className="bg-background pb-16 pt-30 md:pb-32">
-                    <h2 className="text-center text-4xl md:text-5xl leading-tight">Easy Integration with Your Favorite POS Systems</h2>
-                    <Marquee className="mt-20">
+                <section className="bg-background pb-8 pt-12 md:pb-32 md:pt-30 px-4 sm:px-6">
+                    <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight px-4">Easy Integration with Your Favorite POS Systems</h2>
+                    <Marquee className="mt-8 md:mt-20">
                             <MarqueeContent>
-                                <MarqueeItem className="flex items-center justify-center h-20 w-full mx-12">
+                                <MarqueeItem className="flex items-center justify-center h-12 sm:h-16 md:h-20 w-full mx-4 sm:mx-8 md:mx-12">
                                     <img
-                                        className="h-20 w-fit"
+                                        className="h-12 sm:h-16 md:h-20 w-fit"
                                         src="/Images/Clover_mobile_app_Logo.svg.png"
                                         alt="Clover Logo"
                                         height="26"
                                         width="auto"
                                     />
                                 </MarqueeItem>
-                                <MarqueeItem className="flex items-center justify-center h-20 w-full mx-12">
+                                <MarqueeItem className="flex items-center justify-center h-12 sm:h-16 md:h-20 w-full mx-4 sm:mx-8 md:mx-12">
                                     <img
-                                        className="h-20 w-fit"
+                                        className="h-12 sm:h-16 md:h-20 w-fit"
                                         src="/Images/Square_Inc._logo.svg_.png"
                                         alt="Square Logo"
                                         height="26"
                                         width="auto"
                                     />
                                 </MarqueeItem>
-                                <MarqueeItem className="flex items-center justify-center h-20 w-full mx-12">
+                                <MarqueeItem className="flex items-center justify-center h-12 sm:h-16 md:h-20 w-full mx-4 sm:mx-8 md:mx-12">
                                     <img
-                                        className="h-20 w-fit"
+                                        className="h-12 sm:h-16 md:h-20 w-fit"
                                         src="/Images/Toast_logo.svg.png"
                                         alt="Toast Logo"
                                         height="26"
