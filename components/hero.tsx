@@ -32,20 +32,22 @@ const transitionVariants = {
 export default function Hero() {
     return (
         <>
-            <main className="overflow-hidden">
+            <main className="overflow-hidden bg-background relative">
                 {/* RippleGrid background (client-only) */}
-                <div className="absolute inset-0 -z-20 pointer-events-none">
+                <div className="absolute inset-0 z-0 pointer-events-none">
                     <RippleGrid
                         enableRainbow={false}
                         gridColor="#D97706"
-                        rippleIntensity={0.005}
-                        gridSize={6.0}
+                        rippleIntensity={0.03}
+                        gridSize={35.0}
                         gridThickness={29.0}
                         mouseInteraction={true}
                         mouseInteractionRadius={1}
                         opacity={1}
                     />
                 </div>
+                {/* Semi-transparent overlay to maintain background color while allowing RippleGrid to show */}
+                <div className="absolute inset-0 z-[1] pointer-events-none bg-background/75"></div>
                 <div
                     aria-hidden
                     className="absolute inset-0 isolate hidden opacity-65 contain-strict lg:block">
@@ -53,7 +55,7 @@ export default function Hero() {
                     <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
                     <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
-                <section>
+                <section className="relative z-10">
                     <div className="relative pt-24 md:pt-36">
                         <AnimatedGroup
                             variants={{
@@ -192,7 +194,7 @@ export default function Hero() {
                         </AnimatedGroup>
                     </div>
                 </section>
-                <section className="bg-background pb-16 pt-30 md:pb-32">
+                <section className="relative z-10 bg-background pb-16 pt-30 md:pb-32">
                     <h2 className="text-center text-4xl md:text-5xl leading-tight">Easy Integration with Your Favorite POS Systems</h2>
                     <Marquee className="mt-8 md:mt-20">
                             <MarqueeContent>

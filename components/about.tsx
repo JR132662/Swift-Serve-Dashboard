@@ -4,7 +4,7 @@ import { ScrollAnimation, StaggerContainer } from '@/components/motion-primitive
 
 export default function About() {
 	return (
-		<section className="w-full relative z-20 py-20" style={{ background: 'var(--card)', color: 'var(--card-foreground)' }}>
+		<section className="w-full relative z-20 py-20 bg-background">
 			<div className="mx-auto max-w-7xl px-6 gap-7">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-15 items-center">
 					{/* Left: copy */}

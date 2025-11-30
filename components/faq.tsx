@@ -35,7 +35,7 @@ export default function FAQs() {
     ]
 
     return (
-        <section className=" py-16 md:py-24">
+        <section className="bg-background py-16 md:py-24">
             <div className="mx-auto max-w-5xl px-4 md:px-6">
                 <ScrollAnimation direction="up" delay={0.1}>
                 <div>
