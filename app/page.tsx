@@ -9,13 +9,11 @@ import SwiftServeFeatures from '@/components/swiftserve-features'
 export default function Home() {
   return (
     <Layout>
-      <div className="force-light-mode">
         <Hero />
         <About />
         <SwiftServeSteps />
         <SwiftServeFeatures />
         <FAQs />
-      </div>
     </Layout>
   )
 }
