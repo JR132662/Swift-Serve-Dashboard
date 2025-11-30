@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import NavLink from './nav-link'
 import { IconMenu2, IconX } from "@tabler/icons-react"
+import RippleGrid from './RippleGrid';
 
 export default function NavBar() {
 
@@ -19,7 +20,7 @@ export default function NavBar() {
 
                 {/* Logo */}
                 <div>
-                    <p className="text-xl uppercase tracking-wider font-bold dark:text-white">Swift Serve</p>
+                    <a href={"/"} className="text-xl uppercase tracking-wider font-bold dark:text-white">Swift Serve</a>
                 </div>
 
                 {/* Desktop */}
