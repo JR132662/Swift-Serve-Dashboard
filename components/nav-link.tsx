@@ -16,11 +16,19 @@ export default function NavLink({ href, children }: NavLinkProps) {
     <li>
       <Link
         href={href}
-        className={`cursor-pointer hover:font-semibold ${
-          path === href ? 'font-semibold border-b-2 border-blue-500 pb-1' : ''
-        }`}
+        className={`relative cursor-pointer inline-block transition-all duration-300 ${
+          path === href ? 'font-semibold' : ''
+        } group`}
       >
-        {children}
+        <span className="relative z-10">{children}</span>
+        {/* Amber underline that animates from right to left on hover */}
+        <span 
+          className="absolute bottom-0 right-0 h-0.5 bg-[#D97706] w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" 
+        />
+        {/* Active state underline */}
+        {path === href && (
+          <span className="absolute bottom-0 left-0 h-0.5 bg-[#D97706] w-full" />
+        )}
       </Link>
     </li>
   )

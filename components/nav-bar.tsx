@@ -25,8 +25,13 @@ export default function NavBar() {
 
                 {/* Desktop */}
                 <ul className="hidden md:flex justify-between gap-6 text-lg">
-                    <NavLink href={"/dashboard"}>Login</NavLink>   
+                    <NavLink href={"/dashboard"}>Dashboard</NavLink>   
+                    <NavLink href={"/About"}>About</NavLink>
+                    <NavLink href={"/Industries"}>Industries</NavLink>
+                    <NavLink href={"/Documentation"}>Documentation</NavLink>
+                    <NavLink href={"/login"}>Login</NavLink>
                 </ul>
+
 
                 {/* Small Screens */}
                 <div className='block md:hidden'>
